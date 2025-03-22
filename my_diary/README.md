@@ -1,6 +1,6 @@
-# Web Programming HW#1
+# Web Programming
 
-## Run the app (後面有說明進階條件實作內容)
+## Run the app (Advanced implementation details explained below)
 
 Follow the instructions in this section to run the app locally.
 
@@ -45,19 +45,19 @@ yarn start
 
 Open the index.html in the frontend file to open the webapp in the web browser, everything should work fine by now.
 
-## 進階條件實作內容說明
+## Advanced Implementation Details
 
-### 1. 限制選取合法日期
+### 1. Restricting Valid Date Selection
 
-透過html中的input設定，限制使用者只能選取合法日期。
+Through HTML input settings, users are restricted to selecting only valid dates.
 
 ```bash
 <input type="date" id="diaryDate" />
 ```
 
-### 2, 利用心情以及標籤篩選日記卡
+### 2, Filtering Diary Cards by Mood and Tags
 
-在前端的script.js中，新增一個篩選日記卡功能，簡言之，選擇欲篩選之心情或標籤，按下篩選按鈕則會開始篩選，Function先在前端將所有日記卡re-render掉，但在前端保留日記卡資料，完成後，跑一個迴圈，若日記卡標籤或心情有符合篩選選擇，便將其render出來，若選擇無(不做任何篩選)，則會re-render畫面所有日記卡，然後利用前端站存的資料將所有日記卡render出來，以達到顯示所有日記卡的效果。
+In the frontend's script.js, a diary card filtering function has been added. In short, select the mood or tag to filter, then press the filter button to begin filtering. The function first re-renders all diary cards from the frontend while preserving the diary card data. After completion, it runs a loop - if a diary card's tag or mood matches the filter selection, it will be rendered. If "None" is selected (no filtering), all diary cards will be re-rendered on the screen using the data stored in the frontend, achieving the effect of displaying all diary cards.
 
 
 ```bash
@@ -65,39 +65,39 @@ Open the index.html in the frontend file to open the webapp in the web browser, 
     //console.log("Filter btn pressed");
     const ThingToFilter = document.getElementById("FilterSelect").value;
 
-    // 刪除所有當前的日記卡片元素
+    // Delete all current diary card elements
     const diaryCards = document.querySelectorAll("details");
     diaryCards.forEach((card) => card.remove());
 
-    // 檢查ThingToFilter是否為"無"
+    // Check if ThingToFilter is "None"
     if (ThingToFilter === "無") {
-      // 重新渲染所有日記條目
+      // Re-render all diary entries
       diaryData.forEach((entry) => {
         render_diary(entry);
       });
     } else {
-      // 過濾出符合指定心情（或標籤）的日記條目
+      // Filter diary entries that match the specified mood (or tag)
       const filteredDiaries = diaryData.filter(
         (entry) => entry.mood === ThingToFilter || entry.tag === ThingToFilter,
       );
 
-      // 重新渲染過濾後的日記條目
+      // Re-render the filtered diary entries
       filteredDiaries.forEach((entry) => {
         render_diary(entry);
       });
     }
   });
 ```
-## Lint檢查說明
+## Lint Check Instructions
 
-### 1. 檢查frontend
+### 1. Check frontend
  
 ```bash
 cd frontend
 yarn lint
 ```
 
-### 3. 檢查backend
+### 3. Check backend
  
 ```bash
 cd backend
