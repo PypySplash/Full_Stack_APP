@@ -6,24 +6,24 @@ Follow the instructions in this section to run the app locally.
 
 ### 0. node.js setup
 
-請確認你有安裝`Node.js`(修課同學應該都有裝)，若沒有裝請參考老師公佈的`HW0`，可輸入以下訊息確認。
+Please make sure you have installed Node.js (students taking this course should already have it installed). If not, please refer to the published `HW0`. You can check by entering the following command:
 
 ```bash
 node -v
-#輸入後會在此顯示node版本，因人而異
+# This will display your node version, which varies by user
 ```
 
-建議 node 不要使用太新的版本，不然好像會噴錯。
+It's recommended not to use a version of Node that is too new, as it might cause errors.
 
-若照下述之步驟開不起 Server，請將 node 版本換成`v18,17.1`試試看，謝謝。
+If you can't start the Server by following the steps below, please try changing your Node version to `v18.17.1`. Thank you.
 
-如果你是使用`fnm`作為 version manager，可以輸入以下指令以切換 node 版本
+If you're using fnm as your version manager, you can enter the following command to switch your Node version:
 
 ```bash
 fnm use v18.17.1
 ```
 
-若使用的是`nvm`，請輸入以下指令
+If you're using `nvm`, please enter the following command:
 
 ```bash
 nvm use v18.17.1
@@ -31,7 +31,7 @@ nvm use v18.17.1
 
 ### 1. Install dapendencies
 
-在/frontend 與/backend 中都安裝 yarn
+Install yarn in both /frontend and /backend directories
 
 ```bash
 #in /hw2
@@ -79,14 +79,14 @@ VITE_API_URL="http://localhost:8000/api"
 
 ### 4. start the backend server
 
-進到/backend 中並執行以下指令
+Go to the /backend directory and execute the following command:
 
 ```bash
 #in /backend
 yarn dev
 ```
 
-你應該會看到類似以下的訊息, 代表 backend server 成功開始運作並已連接到 MongoDB.
+You should see a message similar to the following, indicating that the backend server has successfully started and connected to MongoDB:
 
 ```bash
 Connected to MongoDB
@@ -95,7 +95,7 @@ Server running on port http://localhost:8000
 
 ### 5. start the frontend server
 
-進到/frontend 中並執行以下指令
+Go to the /frontend directory and execute the following command:
 
 ```bash
 #in /frontend
@@ -104,21 +104,53 @@ yarn dev
 
 Visit `http://localhost:5173` to see the app in action. That's it, you're done!
 
-若無跳出警告或錯誤訊息即代表網頁已成功開始運作!!
+If no warning or error messages appear, it means the website has successfully started!
 
 ### 6. clear your mongodb
 
-請清空你的 MongoDB，以避免 Schema 與你資料庫的現有內容不相符，造成 APP 無法正常運作。
+Please clear your MongoDB to avoid issues with the Schema not matching your database's existing content, which could cause the APP to malfunction.
 
-此外，若和後端 Server 的溝通有問題，請再三確認 backend/.env 中的設定或拼寫無誤(例如 URL 後多了不必要的 semicolon)。
+Additionally, if you have problems communicating with the backend Server, please triple-check the settings or spelling in backend/.env (for example, check for unnecessary semicolons at the end of the URL).
 
-## APP 使用說明
+## APP Usage Instructions
 
-### **_PERFECT 要求_**
+### **_PERFECT Requirements_**
 
-1. 使用者提示: 當使用者未輸入資訊或是進行錯誤操作時，給予適當提示。例如使用者新增或編輯清單時，未輸入標題，以彈窗提示「請輸入標題」。
+1. User Prompts: When users fail to input information or perform incorrect operations, provide appropriate prompts. For example, when users add or edit a list without entering a title, a popup should prompt "Please enter a title."
+使用者提示: 當使用者未輸入資訊或是進行錯誤操作時，給予適當提示。例如使用者新增或編輯清單時，未輸入標題，以彈窗提示「請輸入標題」。
 
-2. 重複名稱檢測: 新增播放清單與歌曲時，播放清單名稱不可重複，同一播放清單內的歌曲名稱不可重複。
+2. Duplicate Name Detection: When adding playlists and songs, playlist names cannot be duplicated, and song names within the same playlist cannot be duplicated.
+重複名稱檢測: 新增播放清單與歌曲時，播放清單名稱不可重複，同一播放清單內的歌曲名稱不可重複。
+
+
+
+### Home Page
+
+1. Title Bar: "WP Music" is displayed at the top of the page, with "My Playlists" displayed below it.
+2. Each playlist is displayed at the bottom of the page, showing the playlist image, number of songs, and playlist name.
+3. Clicking on a playlist image opens the corresponding playlist page, where you can browse its contents.
+4. The page supports responsive web design (RWD), and the number of playlists per row will adjust based on screen size.
+5. There are ADD and DELETE buttons in the upper right corner of the page, corresponding to the functions of adding and deleting playlists.
+6. ADD Button: When clicked, a popup window appears where users can enter a playlist name and description. After completing the input, a new playlist will appear on the home page. Pressing CANCEL returns to the home page.
+7. DELETE Button: When clicked, it enters delete mode, and the button text changes to DONE. A red delete button appears in the upper right corner of each playlist; clicking it deletes that playlist. Clicking the DONE button again makes the delete buttons disappear from the playlists, and the button text changes back to DELETE.
+
+
+
+### Playlist Page
+
+1. The playlist's image, title, and description are displayed at the top of the page.
+2. Both the playlist title and description can be edited. Clicking on the title or description text will display an editing field. The content is automatically saved and updated when you leave the field.
+3. The songs in the playlist are displayed at the bottom of the screen. The first column has a Checkbox and titles for each row.
+4. You can clearly see each song's title, artist, and song link. Song links are clickable and open in a new window. Each song has a Checkbox on the far left for selection. The Checkbox in the first column has a select-all function.
+5. There is an edit button on the far right of each song's information. Clicking it opens a popup window where users can edit the song name, artist, and link.
+6. In song editing mode, you can also add the song to other playlists by selecting the desired playlist from the list. After confirming, the song will be automatically added to the selected playlist (while remaining in the original playlist).
+7. The page supports responsive web design (RWD), and the width of text and song lists will adjust based on screen size.
+8. There are ADD and DELETE buttons to the right of the playlist description, corresponding to the functions of adding and deleting songs.
+9. ADD Button: When clicked, a popup window appears where users can enter a song name, artist, and song link. After completing the input, a new song will appear on the playlist page. Pressing CANCEL returns to the playlist page.
+10. DELETE Button: When clicked, a popup appears listing all checked songs and asking the user "Are you sure you want to delete?" If the user selects YES, all selected songs will be deleted. If they select NO, the deletion is canceled and they return to the playlist page.
+11. If no songs are selected when the DELETE button is pressed, a prompt will appear saying "Please select songs."
+
+
 
 ### 首頁
 
